@@ -31,8 +31,7 @@ public class ProductRepository {
     }
 
     public List<Product> getProductInGivenCateogry(Product.Category category) {
-        return products
-                .stream()
+        return products.stream()
                 .filter(product -> product.getCategory().equals(category))
                 .collect(Collectors.toList());
     }
@@ -47,8 +46,7 @@ public class ProductRepository {
     }
 
     private double getSumOfPrices(List<Product> products) {
-        return products
-                .stream()
+        return products.stream()
                 .mapToDouble(Product::getPrice)
                 .sum();
     }

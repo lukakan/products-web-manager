@@ -19,15 +19,14 @@ public class ProductController {
     }
 
     @GetMapping("/list")
-    public String showProducts(@RequestParam(name = "kategoria", required = false) String categoryName, Model model) {
+    public String showProducts(@RequestParam(name = "category", required = false) Product.Category category, Model model) {
         List<Product> produts;
         double sumOfProductsPrices;
 
-        if (categoryName == null) {
+        if (category == null) {
             produts = productRepository.getProducts();
             sumOfProductsPrices = productRepository.getSumOfPricesForAllProducts();
         } else {
-            Product.Category category = Product.Category.getCategoryFromString(categoryName);
             produts = productRepository.getProductInGivenCateogry(category);
             sumOfProductsPrices = productRepository.getSumOfPricesForGivenProductCategory(category);
         }
@@ -46,7 +45,7 @@ public class ProductController {
     @PostMapping("/add")
     public String addProductToList(Product product) {
         productRepository.add(product);
-        return "redirect:/index.html";
+        return "redirect:/";
     }
 
 }

@@ -53,14 +53,5 @@ public class Product {
         public String getDescription() {
             return description;
         }
-
-        public static Category getCategoryFromString(String name) {
-            for (Category category : Category.values()) {
-                if (category.getDescription().equals(name)) {
-                    return category;
-                }
-            }
-            return null;
-        }
     }
 }
