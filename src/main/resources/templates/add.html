@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Add product</title>
+</head>
+<body>
+        <div class="container" layout:fragment="content">
+            <div class="menu">Kreator nowych produktów</div>
+            <form th:object="${product}" th:action="@{/add}" method="post">
+                <div class="mb-3">
+                    <label for="productName" class="form-label">Nazwa produktu</label>
+                    <input type="text" class="form-control" id="productName" th:field="*{name}">
+                </div>
+                <div class="mb-3">
+                    <label for="productPrice" class="form-label">Cena produktu</label>
+                    <input type="number" class="form-control" id="productPrice" step=".01" th:field="*{price}">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Kategoria produktu</label>
+                    <select class="form-select" aria-label="Default select example" th:field="*{category}">
+                        <option value="" disabled selected hidden>Wybierz</option>
+                        <option th:each="category:${categories}" th:value="${category}" th:text="${category.getDescription()}">Option</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Dodaj product</button>
+            </form>
+        </div>
+    </body>
+</html>
